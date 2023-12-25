@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-
-public class Player : Character
+public class Player2 : Character
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask groundLayer;
@@ -15,7 +14,7 @@ public class Player : Character
     [SerializeField] private Transform throwPoint;
     [SerializeField] private GameObject attackArea;
 
-   
+
 
     private bool IsGrounded = true;
     private bool IsJumping = false;
@@ -34,7 +33,7 @@ public class Player : Character
     // Start is called before the first frame update
     void Update()
     {
-     
+
         if (IsDead)
         {
             return;
@@ -51,7 +50,7 @@ public class Player : Character
         {
             if (IsJumping)
             {
-                IsJumping = false; 
+                IsJumping = false;
                 return;
             }
             if (Math.Abs(Horizontal) > 0.1f)
@@ -59,7 +58,7 @@ public class Player : Character
                 ChangeAnim("Run");
             }
             //Jump
-            if (Input.GetKeyDown(KeyCode.M) && IsGrounded)
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
             {
                 Jump();
             }
@@ -96,13 +95,13 @@ public class Player : Character
     }
     public override void OnInit()
     {
-        base.OnInit();  
+        base.OnInit();
         IsAttack = false;
         transform.position = savePoint;
         ChangeAnim("Idle");
         DeActiveAttack();
         SavePoint();
-      UIManager.instance.SetCoin(CoinCollect);
+        UIManager.instance.SetCoin(CoinCollect);
     }
     public override void OnDespawn()
     {
@@ -149,35 +148,35 @@ public class Player : Character
     }
 
     //player va cham vs do vat dung Ham
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Coin")
-        {
-            CoinCollect++;
-            PlayerPrefs.SetInt("Coin", CoinCollect);
-            UIManager.instance.SetCoin(CoinCollect);
-            Destroy(collision.gameObject);
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Coin")
+    //    {
+    //        CoinCollect++;
+    //        PlayerPrefs.SetInt("Coin", CoinCollect);
+    //        UIManager.instance.SetCoin(CoinCollect);
+    //        Destroy(collision.gameObject);
 
-        }
-        if (collision.tag == "DeathZone")
-        {
-            ChangeAnim("Die");
-            Invoke(nameof(OnInit), 1f);
-        }
-        if ( collision != null &&collision.tag =="Finish")
-        {
-          //  WinGame();
-            Debug.Log("va cham roi");
-            Scene curentScene=SceneManager.GetActiveScene();
-            SceneManager.UnloadSceneAsync(curentScene);
+    //    }
+    //    if (collision.tag == "DeathZone")
+    //    {
+    //        ChangeAnim("Die");
+    //        Invoke(nameof(OnInit), 1f);
+    //    }
+    //    if (collision != null && collision.tag == "Finish")
+    //    {
+    //        //  WinGame();
+    //        Debug.Log("va cham roi");
+    //        Scene curentScene = SceneManager.GetActiveScene();
+    //        SceneManager.UnloadSceneAsync(curentScene);
 
-            SceneManager.LoadScene(newSceneName);
-        }
+    //        SceneManager.LoadScene(newSceneName);
+    //    }
 
-    }
-  
-   
-    
+    //}
+
+
+
     private void ActiveAttack()
     {
         attackArea.SetActive(true);
@@ -198,5 +197,5 @@ public class Player : Character
     {
         this.Horizontal = horizontal;
     }
-   
+
 }

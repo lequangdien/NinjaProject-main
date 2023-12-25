@@ -22,12 +22,9 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         SpawnButtons();
-    
-
-
 
     }
-    private void SpawnButtons()
+    public void SpawnButtons()
     {
         foreach (LevelItem item in scriptableObject.LevelItems)
         {

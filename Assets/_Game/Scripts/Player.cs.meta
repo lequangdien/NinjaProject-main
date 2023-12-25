@@ -3,7 +3,17 @@ guid: 2c1bdcab939c5824baf1f3323c7abdc6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - animator: {instanceID: 0}
+  - healthBar: {instanceID: 0}
+  - combatTextPrefab: {instanceID: 0}
+  - rb: {instanceID: 0}
+  - kunaiPrefab: {instanceID: 0}
+  - throwPoint: {instanceID: 0}
+  - attackArea: {instanceID: 0}
+  - scriptableObject: {instanceID: 0}
+  - buttonsParent: {instanceID: 0}
+  - buttonPrefab: {fileID: 4176734244113469103, guid: 217ee1dca3ed22141ad3bd8a808d512a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
